@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PagePop — Yanan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #ffffff; --ink: #111111; --ink2: #666666; --ink3: #aaaaaa; --border: #e8e8e8; --f: 'DM Sans', -apple-system, sans-serif; --max: 720px; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; max-width: var(--max); margin: 0 auto; }
+.nav-name { font-size: 14px; font-weight: 500; text-decoration: none; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-links a:hover { color: var(--ink); }
+.page { max-width: var(--max); margin: 0 auto; padding: 0 0 80px; }
+.back { font-size: 13px; color: var(--ink3); text-decoration: none; display: inline-block; margin-bottom: 40px; transition: color 0.12s; }
+.back:hover { color: var(--ink); }
+.case-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+.meta-item { font-size: 12px; color: var(--ink3); }
+.meta-sep { font-size: 12px; color: var(--ink3); }
+h1 { font-size: 28px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 20px; }
+.case-intro { font-size: 16px; line-height: 1.75; color: var(--ink2); margin-bottom: 24px; max-width: 600px; }
+.case-intro em { font-style: italic; color: var(--ink); }
+.role-note { font-size: 13px; color: var(--ink3); margin-bottom: 48px; }
+.img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 32px 0; }
+.full-img { width: 100%; border-radius: 10px; overflow: hidden; background: #edf0ec; margin: 32px 0; }
+.full-img img { width: 100%; display: block; }
+.img-wrap { border-radius: 10px; overflow: hidden; background: #edf0ec; }
+.img-wrap img { width: 100%; display: block; }
+.thread-label { font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin: 56px 0 8px; }
+h2 { font-size: 20px; font-weight: 500; margin: 16px 0 14px; color: var(--ink); line-height: 1.3; }
+p { font-size: 15px; color: var(--ink2); line-height: 1.78; margin-bottom: 16px; max-width: 600px; }
+p em { font-style: italic; color: var(--ink); }
+p strong { font-weight: 500; color: var(--ink); }
+hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+.pull { font-size: 19px; line-height: 1.5; color: var(--ink); font-weight: 400; margin: 36px 0; max-width: 600px; letter-spacing: -0.01em; }
+/* lamp pair */
+.lamp-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 28px 0; border-radius: 12px; overflow: hidden; }
+.lamp-card { padding: 32px 28px; display: flex; flex-direction: column; align-items: flex-start; }
+.lamp-off { background: #f8f8f8; }
+.lamp-on  { background: #f1f5ed; }
+.lamp-img { height: 92px; margin-bottom: 18px; display: flex; align-items: flex-end; }
+.lamp-img img { height: 100%; width: auto; display: block; }
+.lamp-img.off img { height: 78px; }
+.lamp-state { font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.lamp-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.lamp-desc  { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+/* metrics */
+.metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 8px 0 0; padding: 0; }
+.metric-num { font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.metric-label { font-size: 12px; color: var(--ink3); }
+.footer-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 36px; border-top: 1px solid var(--border); margin-top: 64px; }
+.nav-link-sm { font-size: 13px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-link-sm:hover { color: var(--ink); }
+@media (max-width: 780px) { nav, .page { padding-left: 20px; padding-right: 20px; } .img-grid-3 { grid-template-columns: 1fr; } .lamp-pair { grid-template-columns: 1fr; } .metrics-row { grid-template-columns: 1fr; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.page { animation: fadeIn 0.4s ease both; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="portfolio.html" class="nav-name">Yanan</a>
+  <ul class="nav-links"><li><a href="portfolio.html#about">About</a></li></ul>
+</nav>
+<div class="page">
+  <a href="portfolio.html" class="back">← All work</a>
+
+  <div class="case-meta">
+    <span class="meta-item">iOS App</span><span class="meta-sep">·</span>
+    <span class="meta-item">Indie</span><span class="meta-sep">·</span>
+    <span class="meta-item">Paid Product</span><span class="meta-sep">·</span>
+    <span class="meta-item">Design · Growth · Pricing</span>
+  </div>
+
+  <h1>PagePop</h1>
+  <p class="case-intro">A paid Kindle companion that grew from a personal frustration into a profitable product. This is the project where I owned everything except the code — <em>spotting the problem, designing the app, running the marketing, and setting the pricing.</em> It's the clearest proof I have that I can take a product all the way to people paying for it.</p>
+  <p class="role-note">A two-person project. Design, growth, and pricing by me. Engineering by my collaborator.</p>
+
+  <div class="full-img"><img src="assets/pagepop/pp-screens.png" alt="PagePop — bookshelf, highlights, and settings"></div>
+
+  <!-- PRODUCT SENSE -->
+  <p class="thread-label">Product sense — finding the real problem</p>
+  <h2>It started with a frustration I kept hitting myself</h2>
+  <p>Kindle is beloved, but its own ecosystem makes simple things needlessly hard. Getting a book onto the device means a cable or Amazon's clunky email flow. Your highlights — the whole reason many people annotate — are locked in a plain text file buried on the device, painful to get out. <em>I wasn't looking for an app idea. I was just annoyed, repeatedly, by the same thing.</em></p>
+  <p>That's usually where the best products come from. I talked to other heavy Kindle readers and found the same friction everywhere — especially around exporting notes. The opportunity wasn't "build a better Kindle app." It was: <strong>take one specific, real, recurring pain and solve it so cleanly that people will pay to never deal with it again.</strong></p>
+
+  <hr>
+
+  <!-- DESIGN RESTRAINT -->
+  <p class="thread-label">Design — restraint as the product</p>
+  <h2>When the problem is friction, the design move is to disappear</h2>
+  <p>The temptation with a utility is to keep adding features. I went the other way. PagePop's interface steps aside — clean type, soft surfaces, nothing competing for attention. <em>The less you notice the interface, the more it feels like the app simply works.</em></p>
+  <p>The one place I let it become emotional is the bookshelf. It shows your real covers, slightly tilted, sorted into unread / reading / finished. It turns a file manager into something closer to a self-portrait — the books you own, laid out like a shelf you'd actually want to look at. That small shift is what makes a utility feel personal.</p>
+
+  <hr>
+
+  <!-- GROWTH -->
+  <p class="thread-label">Growth — every user came from content</p>
+  <h2>I ran the entire top of the funnel myself</h2>
+  <p>We never bought ads or tried other channels, which means the growth story is unusually clean: <strong>essentially every user came from content I made.</strong> I built a dedicated account producing two kinds of posts — practical how-to guides for getting the most out of Kindle, and softer "Kindle lifestyle" writing that reached readers who didn't know a tool like this existed. I extended the same to short-form video.</p>
+  <p>Beyond my own content, I partnered with creators to try the product and post about it, and built a referral loop into the app itself: if a user enjoyed PagePop and shared a post that got some traction, we'd gift them membership. <em>The people who loved the product became the channel — at no cost to us.</em></p>
+
+  <hr>
+
+  <!-- PRICING -->
+  <p class="thread-label">Pricing — reading the market's psychology</p>
+  <h2>Different markets pay differently, so they shouldn't see the same paywall</h2>
+  <p>This is the part I'm most proud of, because it's pure product judgment, not aesthetics. I set the pricing — and the key insight was that <strong>payment psychology isn't universal.</strong></p>
+  <p>Chinese users tend to prefer one-time ownership over recurring fees, so for that market a lifetime tier pulls far harder on the paywall than an annual subscription would — even when the annual option is technically cheaper up front. Overseas users are the opposite: comfortable with monthly subscriptions, so there the monthly plan leads, priced up to the edge of what feels fair. <em>Same product, two different paywalls, each shaped to how that market actually likes to pay.</em></p>
+
+  <p class="pull">A price isn't a number. It's a read on how someone decides to say yes.</p>
+
+  <hr>
+
+  <!-- THE LAMP -->
+  <h2>One last thing: a lamp that earns its light</h2>
+  <p>The paywall is usually where apps turn cold — a modal, a price, a feature list. PagePop has a hand-drawn bedside lamp instead. Before you subscribe, it's just an outline. Subscribe, and the lamp turns on: warm, lit, glowing. <em>It's not a metaphor explained — it's a metaphor felt.</em> Even in the most practical tool I've made, I wanted one moment that was purely about how it feels.</p>
+
+  <div class="lamp-pair">
+    <div class="lamp-card lamp-off">
+      <div class="lamp-img off"><img src="assets/pagepop/pp-lamp-off.svg" alt="Lamp, unlit"></div>
+      <p class="lamp-state">Free</p>
+      <p class="lamp-title">Light's off</p>
+      <p class="lamp-desc">The lamp waits, drawn but unlit.</p>
+    </div>
+    <div class="lamp-card lamp-on">
+      <div class="lamp-img"><img src="assets/pagepop/pp-lamp-on.png" alt="Lamp, lit"></div>
+      <p class="lamp-state">Member</p>
+      <p class="lamp-title">The lamp is on</p>
+      <p class="lamp-desc">Hand-drawn. One small illustration doing what a feature list never could.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="metrics-row">
+    <div><p class="metric-num">Profitable</p><p class="metric-label">Sustained paid revenue</p></div>
+    <div><p class="metric-num">4.8★</p><p class="metric-label">App Store rating</p></div>
+    <div><p class="metric-num">Organic</p><p class="metric-label">Growth entirely from content & referral</p></div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="portfolio.html" class="nav-link-sm">← All work</a>
+    <a href="tennis.html" class="nav-link-sm">Next: Bouncie →</a>
+  </div>
+</div>
+</body>
+</html>

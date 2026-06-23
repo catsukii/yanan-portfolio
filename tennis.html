@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bouncie — Yanan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #ffffff; --ink: #111111; --ink2: #666666; --ink3: #aaaaaa; --border: #e8e8e8; --f: 'DM Sans', -apple-system, sans-serif; --max: 720px; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; max-width: var(--max); margin: 0 auto; }
+.nav-name { font-size: 14px; font-weight: 500; text-decoration: none; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-links a:hover { color: var(--ink); }
+.page { max-width: var(--max); margin: 0 auto; padding: 0 0 80px; }
+.back { font-size: 13px; color: var(--ink3); text-decoration: none; display: inline-block; margin-bottom: 40px; transition: color 0.12s; }
+.back:hover { color: var(--ink); }
+.nomination { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--ink3); background: #f8f8f8; border: 1px solid var(--border); padding: 4px 12px; border-radius: 100px; margin-bottom: 28px; }
+.case-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+.meta-item { font-size: 12px; color: var(--ink3); }
+.meta-sep { font-size: 12px; color: var(--ink3); }
+h1 { font-size: 28px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 20px; }
+.case-intro { font-size: 16px; line-height: 1.75; color: var(--ink2); margin-bottom: 48px; max-width: 600px; }
+.case-intro em { font-style: italic; color: var(--ink); }
+.img-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 32px 0; }
+.img-wrap { border-radius: 10px; overflow: hidden; background: #e8ecdf; }
+.img-wrap img { width: 100%; display: block; }
+.full-img { width: 100%; border-radius: 10px; overflow: hidden; background: #f4f4f4; margin: 32px 0; }
+.full-img img { width: 100%; display: block; }
+.img-cap { font-size: 12px; color: var(--ink3); margin-top: 10px; line-height: 1.5; }
+/* video — narrower than text column, extra vertical breathing room */
+.video-block { margin: 48px auto; max-width: 380px; }
+.video-block video { width: 100%; aspect-ratio: 9/19.5; object-fit: cover; border-radius: 16px; display: block; background: #e8ecdf; }
+.video-cap { font-size: 12px; color: var(--ink3); margin-top: 12px; line-height: 1.5; text-align: center; }
+/* full-width image — shows complete, never cropped */
+.full-img { width: 100%; border-radius: 12px; overflow: hidden; margin: 32px 0; }
+.full-img img { width: 100%; height: auto; display: block; }
+.img-cap { font-size: 12px; color: var(--ink3); margin-top: 10px; line-height: 1.5; }
+/* side-by-side: text left, wide image right */
+.media-row { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: center; margin: 56px 0; }
+.media-row.reverse { grid-template-columns: 1.2fr 0.8fr; }
+.media-row.reverse .media-text { order: 1; }
+.media-row img { width: 100%; aspect-ratio: 2/1; object-fit: cover; border-radius: 12px; display: block; background: #eef0ec; }
+.media-text h2 { margin-top: 0; }
+.media-text p { margin-bottom: 0; }
+.thread-label { font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin: 56px 0 8px; }
+h2 { font-size: 20px; font-weight: 500; margin: 16px 0 14px; color: var(--ink); line-height: 1.3; }
+p { font-size: 15px; color: var(--ink2); line-height: 1.78; margin-bottom: 16px; max-width: 600px; }
+p em { font-style: italic; color: var(--ink); }
+p strong { font-weight: 500; color: var(--ink); }
+hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+.pull { font-size: 19px; line-height: 1.5; color: var(--ink); font-weight: 400; margin: 36px 0; max-width: 600px; letter-spacing: -0.01em; }
+.code-chip { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 13px; background: #f4f4f4; border: 1px solid var(--border); border-radius: 5px; padding: 1px 7px; color: var(--ink); }
+.metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 8px 0 0; padding: 0; }
+.metric-num { font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.metric-label { font-size: 12px; color: var(--ink3); }
+.footer-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 36px; border-top: 1px solid var(--border); margin-top: 64px; }
+.nav-link-sm { font-size: 13px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-link-sm:hover { color: var(--ink); }
+@media (max-width: 780px) { nav, .page { padding-left: 20px; padding-right: 20px; } .img-grid-2 { grid-template-columns: 1fr; } .metrics-row { grid-template-columns: 1fr; } .media-row, .media-row.reverse { grid-template-columns: 1fr; gap: 20px; } .media-row.reverse .media-text { order: 0; } .video-block { max-width: 300px; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.page { animation: fadeIn 0.4s ease both; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="portfolio.html" class="nav-name">Yanan</a>
+  <ul class="nav-links"><li><a href="portfolio.html#about">About</a></li></ul>
+</nav>
+<div class="page">
+  <a href="portfolio.html" class="back">← All work</a>
+
+  <p class="nomination">🏆 Nominated — Xiaohongshu Independent Developer Competition</p>
+
+  <div class="case-meta">
+    <span class="meta-item">iOS App</span><span class="meta-sep">·</span>
+    <span class="meta-item">AI-Native Workflow</span><span class="meta-sep">·</span>
+    <span class="meta-item">Illustration</span><span class="meta-sep">·</span>
+    <span class="meta-item">Brand</span>
+  </div>
+
+  <h1>Bouncie</h1>
+  <p class="case-intro">A tennis training tracker, and the project where I figured out how to work AI-native. It started as a way to ship faster — but what it really taught me was a question worth more than any tool: <em>when AI can do more and more, what's the part of a product you must never hand off?</em> For Bouncie, that answer is its whole reason to exist — being fun.</p>
+
+  <div class="video-block">
+    <video src="assets/bouncie/bouncie-physics.mp4" autoplay loop muted playsinline></video>
+    <p class="video-cap">The home screen runs on SpriteKit — tennis balls tumble in, bounce off each other, and settle with their faces. Haptics and sound on every collision. It does no functional work at all; it exists purely to make you smile.</p>
+  </div>
+
+  <!-- LAYER 1 -->
+  <p class="thread-label">Building the ground AI can stand on</p>
+  <h2>From hardcoded chaos to a system AI could follow</h2>
+  <p>Bouncie started from zero, with all the uncertainty that comes with a 0→1 product. We had no design system — which meant a lot of hardcoded values scattered through the codebase, the usual mess of an early build. As the app grew, that mess became the bottleneck.</p>
+  <p>So I used a <strong>skill</strong> to audit the entire project and authored a <span class="code-chip">design.md</span> — a single source of truth for the product's design language. This wasn't just housekeeping. <em>It turned the design judgment living in my head into rules a machine and a collaborator could both read and execute.</em> Spacing, color, type, component behavior — all written down, all followable. The design.md is a translation layer between how I think and what the tools build.</p>
+
+  <div class="full-img"><img src="assets/bouncie/bouncie-ai-coding.png" alt="AI coding session — building the design.md"></div>
+  <p class="img-cap">Using a skill to audit the codebase and generate the design.md — turning scattered, hardcoded values into a single set of rules the whole project could follow.</p>
+
+  <hr>
+
+  <!-- LAYER 2 -->
+  <p class="thread-label">The proof the system worked</p>
+  <h2>My engineer could ship a feature that didn't feel "off"</h2>
+  <p>Here's the moment I knew the system held. My engineering collaborator had an idea for a feature — not an illustration-heavy one, but a real addition to the app. She built it herself, end to end. And it fit. <em>It didn't feel bolted on; it felt like it had always been part of Bouncie.</em></p>
+  <p>That's the real payoff of writing the design down. Visual consistency stopped depending on me personally reviewing every screen. The coherence was built into the rules, not policed by hand. <strong>I'd gone from doing the design to designing a system that could hold its own shape without me.</strong></p>
+
+  <hr>
+
+  <!-- LAYER 3 + BRAND -->
+  <p class="thread-label">Knowing the edge of what to automate</p>
+  <h2>AI handles what should be consistent. I protect what makes it fun.</h2>
+  <p>So I lean on AI for the things it's genuinely good at — UI optimization, refactoring, holding the design system together. That's the work that <em>should</em> be consistent, and consistency is exactly where AI shines.</p>
+
+  <div class="full-img"><img src="assets/bouncie/bouncie-ai-analysis.png" alt="AI-driven training analysis"></div>
+  <p class="img-cap">AI-driven analysis of each training session — interval load, effort distribution, trends over time. The kind of consistent, data-heavy work AI handles well, and should.</p>
+  <p>But every illustration in Bouncie is drawn by hand. The moody tennis balls, the reactive mascot, the sticker badges — none of them are generated. Not out of nostalgia, and not because I can't prompt an image model. It's a brand decision. <strong>Bouncie's entire reason for existing is that it's fun</strong> — and "fun" is exactly the thing AI can't reliably make yet. It renders <em>general</em>; this product needs <em>specific</em>. A ball that's funny, a mascot with an actual mood — that's still a human read on what will make someone smile.</p>
+
+  <p class="pull">As AI gets stronger, the real skill isn't using it — it's knowing what a product can't afford to let it touch.</p>
+
+  <p>AI is improving fast, and I expect that line to keep moving. But right now, the part of Bouncie that makes people screenshot it and post it — the character, the charm, the sense that someone with a sense of humor made this — is the part I keep for myself. That's not a limitation of the workflow. That's the point of it: <em>automate the consistent, protect the alive.</em></p>
+
+  <div class="full-img"><img src="assets/bouncie/bouncie-hero.png" alt="Bouncie — hand-drawn sticker characters, badges, and widgets"></div>
+  <p class="img-cap">Every sticker, badge, and widget — the moody balls, "Don't Stop," "Bravo!" — drawn by hand. This is the part of the product I'll never hand off.</p>
+
+  <hr>
+
+  <!-- SUPPORTING DETAILS -->
+  <h2>The smaller details</h2>
+  <p>Two more decisions worth a line each. <strong>Physics as delight:</strong> the home screen uses SpriteKit to simulate real ball physics — five tennis balls tumble in, bounce off each other, and settle with their faces. With haptics and sound, it turns a stat page into something you want to touch, doing no functional work at all. <strong>Reports built to travel:</strong> the monthly summary is dense with data and shareable in one tap — designed, deliberately, to be beautiful enough that people post it. The shareable report and home-screen widgets carry Bouncie's character outside the app, where it does the marketing for free.</p>
+
+  <hr>
+
+  <div class="metrics-row">
+    <div><p class="metric-num">8K+</p><p class="metric-label">Downloads, zero ad spend</p></div>
+    <div><p class="metric-num">Nominated</p><p class="metric-label">XHS Indie Dev Competition</p></div>
+    <div><p class="metric-num">100%</p><p class="metric-label">Illustrations hand-drawn</p></div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="portfolio.html" class="nav-link-sm">← All work</a>
+    <a href="zeitro.html" class="nav-link-sm">Next: Zeitro →</a>
+  </div>
+</div>
+</body>
+</html>

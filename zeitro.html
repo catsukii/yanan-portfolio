@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zeitro — Yanan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #ffffff; --ink: #111111; --ink2: #666666; --ink3: #aaaaaa; --border: #e8e8e8; --f: 'DM Sans', -apple-system, sans-serif; --max: 720px; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; max-width: var(--max); margin: 0 auto; }
+.nav-name { font-size: 14px; font-weight: 500; text-decoration: none; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-links a:hover { color: var(--ink); }
+.page { max-width: var(--max); margin: 0 auto; padding: 0 0 80px; }
+.back { font-size: 13px; color: var(--ink3); text-decoration: none; display: inline-block; margin-bottom: 40px; transition: color 0.12s; }
+.back:hover { color: var(--ink); }
+.case-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+.meta-item { font-size: 12px; color: var(--ink3); }
+.meta-sep { font-size: 12px; color: var(--ink3); }
+h1 { font-size: 28px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 20px; }
+.case-intro { font-size: 16px; line-height: 1.75; color: var(--ink2); margin-bottom: 24px; max-width: 600px; }
+.case-intro em { font-style: italic; color: var(--ink); }
+.role-note { font-size: 13px; color: var(--ink3); margin-bottom: 48px; }
+.full-img { width: 100%; border-radius: 10px; overflow: hidden; background: #eef1f5; margin: 32px 0; border: 1px solid var(--border); }
+.full-img img { width: 100%; display: block; }
+.img-cap { font-size: 12px; color: var(--ink3); margin-top: 10px; line-height: 1.5; }
+.thread-label { font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin: 56px 0 8px; }
+h2 { font-size: 20px; font-weight: 500; margin: 16px 0 14px; color: var(--ink); line-height: 1.3; }
+p { font-size: 15px; color: var(--ink2); line-height: 1.78; margin-bottom: 16px; max-width: 600px; }
+p em { font-style: italic; color: var(--ink); }
+p strong { font-weight: 500; color: var(--ink); }
+hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+.pull { font-size: 19px; line-height: 1.5; color: var(--ink); font-weight: 400; margin: 36px 0; max-width: 600px; letter-spacing: -0.01em; }
+/* dual user */
+.dual-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin: 28px 0; border-radius: 10px; overflow: hidden; }
+.dual-card { background: #f8f8f8; padding: 24px; }
+.dual-label { font-size: 11px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.dual-name { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+.dual-desc { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+/* research findings inline */
+.findings { display: flex; gap: 28px; flex-wrap: wrap; margin: 24px 0 8px; }
+/* flow diagrams */
+.diagram { margin: 32px 0; width: 100%; }
+.diagram svg { width: 100%; height: auto; display: block; }
+.diagram-cap { font-size: 12px; color: var(--ink3); margin-top: 10px; line-height: 1.5; }
+.finding-num { font-size: 26px; font-weight: 500; color: var(--ink); line-height: 1; }
+.finding-txt { font-size: 12px; color: var(--ink3); margin-top: 4px; max-width: 150px; line-height: 1.4; }
+/* six decisions */
+.six-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin: 28px 0; border-radius: 10px; overflow: hidden; }
+.six-cell { background: #f8f8f8; padding: 20px; }
+.six-num { font-size: 13px; font-weight: 500; color: var(--ink3); margin-bottom: 10px; }
+.six-title { font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 6px; }
+.six-desc { font-size: 12px; color: var(--ink2); line-height: 1.55; }
+/* metrics */
+.metrics-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin: 8px 0 0; padding: 0; }
+.metric-num { font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.metric-label { font-size: 12px; color: var(--ink3); }
+.footer-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 36px; border-top: 1px solid var(--border); margin-top: 64px; }
+.nav-link-sm { font-size: 13px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-link-sm:hover { color: var(--ink); }
+@media (max-width: 780px) { nav, .page { padding-left: 20px; padding-right: 20px; } .dual-grid { grid-template-columns: 1fr; } .six-grid { grid-template-columns: 1fr 1fr; } .metrics-row { grid-template-columns: 1fr 1fr; gap: 20px; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.page { animation: fadeIn 0.4s ease both; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="portfolio.html" class="nav-name">Yanan</a>
+  <ul class="nav-links"><li><a href="portfolio.html#about">About</a></li></ul>
+</nav>
+<div class="page">
+  <a href="portfolio.html" class="back">← All work</a>
+
+  <div class="case-meta">
+    <span class="meta-item">SaaS · B2B</span><span class="meta-sep">·</span>
+    <span class="meta-item">Product Design</span><span class="meta-sep">·</span>
+    <span class="meta-item">Silicon Valley Startup</span><span class="meta-sep">·</span>
+    <span class="meta-item">Mortgage · North America</span>
+  </div>
+
+  <h1>Zeitro</h1>
+  <p class="case-intro">A no-code website builder for mortgage loan officers, inside a Silicon Valley SaaS. This is the project where every decision had to start with a question I could answer: <em>why this, and not something else?</em> The work wasn't drawing screens. It was building the reasoning that justified each one.</p>
+  <p class="role-note">My role: user research, problem definition, and the full design system of decisions. I owned the "why" behind the product.</p>
+
+  <div class="full-img"><img src="assets/zeitro/zeitro-website.png" alt="Loan officer personal website — desktop and mobile"></div>
+  <p class="img-cap">The output: a personal website a loan officer can stand up themselves — desktop and mobile, generated from a few fields.</p>
+
+  <!-- RESEARCH -->
+  <p class="thread-label">Understanding before designing</p>
+  <h2>Before designing a single screen, I went deep on who actually uses this — and how they behave.</h2>
+  <p>Loan officers in North America skew older — many are 50+, deeply experienced, trusted in their communities, but left behind by digital self-promotion. Existing website builders assume a level of design literacy they don't have. <em>Before I designed anything, I ran the research myself</em> — user interviews and behavioral data — to understand not just what they needed, but how they'd actually behave inside a builder.</p>
+  <p>Three findings reshaped the entire product:</p>
+  <div class="diagram">
+    <svg viewBox="0 0 720 300" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+      <!-- Step labels across top -->
+      <text x="60" y="24" font-size="11" fill="#aaaaaa" letter-spacing="1.5" text-transform="uppercase">RESEARCH</text>
+      <text x="290" y="24" font-size="11" fill="#aaaaaa" letter-spacing="1.5">FINDINGS</text>
+      <text x="525" y="24" font-size="11" fill="#aaaaaa" letter-spacing="1.5">INSIGHT → PRINCIPLE</text>
+
+      <!-- Research box -->
+      <rect x="20" y="40" width="180" height="220" rx="8" fill="#f8f8f8"/>
+      <text x="40" y="72" font-size="13" font-weight="500" fill="#111111">Ran it myself</text>
+      <text x="40" y="98" font-size="12" fill="#666666">User interviews</text>
+      <text x="40" y="120" font-size="12" fill="#666666">Behavioral data</text>
+      <text x="40" y="150" font-size="11" fill="#aaaaaa" width="140">Not just what they</text>
+      <text x="40" y="166" font-size="11" fill="#aaaaaa">needed — how they'd</text>
+      <text x="40" y="182" font-size="11" fill="#aaaaaa">behave in a builder.</text>
+
+      <!-- Arrow 1 -->
+      <line x1="208" y1="150" x2="248" y2="150" stroke="#cccccc" stroke-width="1.5"/>
+      <path d="M248 150 l-7 -4 v8 z" fill="#cccccc"/>
+
+      <!-- Findings (3 stacked) -->
+      <rect x="256" y="40" width="180" height="66" rx="8" fill="#f8f8f8"/>
+      <text x="276" y="72" font-size="18" font-weight="500" fill="#111111">~50%</text>
+      <text x="276" y="92" font-size="11" fill="#666666">dropped off midway</text>
+
+      <rect x="256" y="117" width="180" height="66" rx="8" fill="#f8f8f8"/>
+      <text x="276" y="149" font-size="18" font-weight="500" fill="#111111">78%</text>
+      <text x="276" y="169" font-size="11" fill="#666666">used only basics</text>
+
+      <rect x="256" y="194" width="180" height="66" rx="8" fill="#111111"/>
+      <text x="276" y="226" font-size="18" font-weight="500" fill="#ffffff">90%</text>
+      <text x="276" y="246" font-size="11" fill="#cccccc">edited content, not design</text>
+
+      <!-- Arrow 2 (from the 90% box) -->
+      <line x1="444" y1="227" x2="484" y2="227" stroke="#cccccc" stroke-width="1.5"/>
+      <path d="M484 227 l-7 -4 v8 z" fill="#cccccc"/>
+
+      <!-- Insight + principle -->
+      <rect x="492" y="117" width="208" height="143" rx="8" fill="#f8f8f8" stroke="#e8e8e8" stroke-width="1"/>
+      <text x="512" y="148" font-size="12" fill="#666666">If 90% only change</text>
+      <text x="512" y="165" font-size="12" fill="#666666">words and photos…</text>
+      <text x="512" y="196" font-size="13" font-weight="500" fill="#111111">a flexible editor</text>
+      <text x="512" y="214" font-size="13" font-weight="500" fill="#111111">isn't a feature.</text>
+      <text x="512" y="232" font-size="13" font-weight="500" fill="#111111">It's an obstacle.</text>
+    </svg>
+  </div>
+  <p>That last number is the one that mattered most. <strong>If 90% of users only want to change words and photos — not layouts — then a flexible editor isn't a feature. It's an obstacle.</strong> The data told me to take power away, not add it.</p>
+
+  <hr>
+
+  <!-- DUAL USER -->
+  <p class="thread-label">Whose problem am I really solving?</p>
+  <h2>Two users, not one</h2>
+  <p>A B2B designer's instinct is to design for the buyer — the loan officer. But this product only works if it also serves the people the loan officer is trying to reach. <em>I defined the product around two users at once,</em> and held both in view through every decision.</p>
+  <div class="diagram">
+    <svg viewBox="0 0 720 260" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+      <!-- Loan Officer node -->
+      <rect x="20" y="60" width="250" height="140" rx="10" fill="#f8f8f8"/>
+      <text x="48" y="92" font-size="11" fill="#aaaaaa" letter-spacing="1">PRIMARY USER</text>
+      <text x="48" y="118" font-size="16" font-weight="500" fill="#111111">The Loan Officer</text>
+      <text x="48" y="144" font-size="12" fill="#666666">50+, non-technical,</text>
+      <text x="48" y="162" font-size="12" fill="#666666">high credibility, needs</text>
+      <text x="48" y="180" font-size="12" fill="#666666">a web presence.</text>
+
+      <!-- Homebuyer node -->
+      <rect x="450" y="60" width="250" height="140" rx="10" fill="#f8f8f8"/>
+      <text x="478" y="92" font-size="11" fill="#aaaaaa" letter-spacing="1">END USER</text>
+      <text x="478" y="118" font-size="16" font-weight="500" fill="#111111">The Homebuyer</text>
+      <text x="478" y="144" font-size="12" fill="#666666">Looking for a loan</text>
+      <text x="478" y="162" font-size="12" fill="#666666">officer they can trust,</text>
+      <text x="478" y="180" font-size="12" fill="#666666">fast.</text>
+
+      <!-- Top arrow: LO builds presence -> Homebuyer -->
+      <path d="M270 100 C 345 76, 380 76, 450 100" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+      <path d="M450 100 l-8 -1 l5 -6 z" fill="#cccccc"/>
+      <text x="360" y="62" font-size="11" fill="#666666" text-anchor="middle">builds a professional site</text>
+
+      <!-- Bottom arrow: Homebuyer trust -> LO -->
+      <path d="M450 160 C 380 184, 345 184, 270 160" fill="none" stroke="#cccccc" stroke-width="1.5"/>
+      <path d="M270 160 l8 1 l-5 6 z" fill="#cccccc"/>
+      <text x="360" y="214" font-size="11" fill="#666666" text-anchor="middle">trust converts to business</text>
+    </svg>
+  </div>
+  <p>This framing changed what "good" meant. The builder wasn't there to give loan officers creative freedom — it was there to reliably produce something a nervous first-time homebuyer would trust. <em>Designing for the second user is what kept the first user's product honest.</em></p>
+
+  <hr>
+
+  <!-- SIX DECISIONS -->
+  <p class="thread-label">Every decision had a reason</p>
+  <h2>Six decisions, one goal: published in under 30 minutes</h2>
+  <p>Once the research set the direction — strip away choice, protect trust — each feature became an answer to a specific moment of hesitation. None of these were "nice to have." Each one removed a reason a 50-year-old might give up.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 720 200" xmlns="http://www.w3.org/2000/svg" font-family="DM Sans, sans-serif">
+      <!-- Six small nodes on the left, converging to one goal on the right -->
+      <g font-size="11" fill="#666666">
+        <text x="20" y="24">Modular content</text>
+        <text x="20" y="56">AI-drafted copy</text>
+        <text x="20" y="88">Live preview</text>
+        <text x="20" y="120">Industry defaults</text>
+        <text x="20" y="152">Auto domain</text>
+        <text x="20" y="184">Progress bar</text>
+      </g>
+      <!-- dots at line start -->
+      <g fill="#cccccc">
+        <circle cx="150" cy="20" r="2.5"/><circle cx="150" cy="52" r="2.5"/><circle cx="150" cy="84" r="2.5"/>
+        <circle cx="150" cy="116" r="2.5"/><circle cx="150" cy="148" r="2.5"/><circle cx="150" cy="180" r="2.5"/>
+      </g>
+      <!-- converging lines to a single point -->
+      <g fill="none" stroke="#cccccc" stroke-width="1.2">
+        <path d="M150 20 C 340 20, 360 100, 500 100"/>
+        <path d="M150 52 C 340 52, 380 100, 500 100"/>
+        <path d="M150 84 C 360 84, 400 100, 500 100"/>
+        <path d="M150 116 C 360 116, 400 100, 500 100"/>
+        <path d="M150 148 C 340 148, 380 100, 500 100"/>
+        <path d="M150 180 C 340 180, 360 100, 500 100"/>
+      </g>
+      <!-- goal node -->
+      <rect x="500" y="68" width="200" height="64" rx="10" fill="#111111"/>
+      <text x="600" y="98" font-size="16" font-weight="500" fill="#ffffff" text-anchor="middle">Published in</text>
+      <text x="600" y="119" font-size="16" font-weight="500" fill="#ffffff" text-anchor="middle">under 30 minutes</text>
+    </svg>
+  </div>
+  <p class="diagram-cap">Six decisions, none of them standalone features — each one a removed reason to give up, all converging on a single goal.</p>
+
+  <div class="six-grid">
+    <div class="six-cell"><p class="six-num">01</p><p class="six-title">Modular content</p><p class="six-desc">Structure is pre-built. The user fills in information and never decides on layout — because 90% didn't want to.</p></div>
+    <div class="six-cell"><p class="six-num">02</p><p class="six-title">AI-drafted content</p><p class="six-desc">AI writes the first introduction and FAQ. Kills the blank-page paralysis that stalls non-writers.</p></div>
+    <div class="six-cell"><p class="six-num">03</p><p class="six-title">Live preview</p><p class="six-desc">Every edit appears instantly. No "save and check" gap — the feedback loop is immediate and reassuring.</p></div>
+    <div class="six-cell"><p class="six-num">04</p><p class="six-title">Industry defaults on</p><p class="six-desc">Mortgage-specific FAQs and CTAs are pre-filled and toggled on. Subtract to customize, don't build from nothing.</p></div>
+    <div class="six-cell"><p class="six-num">05</p><p class="six-title">Auto domain</p><p class="six-desc">A personal URL is generated automatically. One-click publish — no hosting decisions to get lost in.</p></div>
+    <div class="six-cell"><p class="six-num">06</p><p class="six-title">Progress bar</p><p class="six-desc">A three-step indicator. The user always knows where they are and how close they are to done.</p></div>
+  </div>
+
+  <div class="full-img"><img src="assets/zeitro/zeitro-annotated.png" alt="Backend builder with annotated design decisions — modular sections, AI content, live preview, industry defaults, auto domain, progress bar"></div>
+  <p class="img-cap">The backend in detail: a three-step flow (Basic information → Manage widgets → Manage website section), annotated with the six decisions above. Everything is calibrated so that filling in, not building, is the entire experience.</p>
+
+  <p class="pull">For this user, the best feature was the one I chose not to build. Restraint was the design.</p>
+
+  <hr>
+
+  <!-- WHAT I LEARNED -->
+  <h2>What this taught me about complex products</h2>
+  <p>The hardest part of this project wasn't the interface — it was earning the right to design it. Understanding NMLS licensing rules, state-by-state requirements, what a loan officer's professional identity actually rests on, what makes a homebuyer trust a stranger online. <em>None of that is visible in the final screens, but all of it is underneath them.</em></p>
+  <p>That's what I took away: in a complex domain, <strong>the quality of the design is capped by the quality of your understanding.</strong> The measure of success was never "does the feature work." It was "can someone who has never built a website finish one — and feel proud of it — in under 30 minutes." Every decision laddered back to that.</p>
+
+  <hr>
+
+  <div class="metrics-row">
+    <div><p class="metric-num">&lt;30m</p><p class="metric-label">To build & publish</p></div>
+    <div><p class="metric-num">&gt;80%</p><p class="metric-label">First-publish success</p></div>
+    <div><p class="metric-num">&gt;90%</p><p class="metric-label">Edit completion rate</p></div>
+    <div><p class="metric-num">&lt;5%</p><p class="metric-label">Operation error rate</p></div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="portfolio.html" class="nav-link-sm">← All work</a>
+    <a href="fatetell.html" class="nav-link-sm">Back to start: FateTell →</a>
+  </div>
+</div>
+</body>
+</html>

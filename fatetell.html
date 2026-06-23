@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FateTell — Yanan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --bg: #ffffff; --ink: #111111; --ink2: #666666; --ink3: #aaaaaa; --border: #e8e8e8; --f: 'DM Sans', -apple-system, sans-serif; --max: 720px; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; max-width: var(--max); margin: 0 auto; }
+.nav-name { font-size: 14px; font-weight: 500; text-decoration: none; }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-links a:hover { color: var(--ink); }
+.page { max-width: var(--max); margin: 0 auto; padding: 0 0 80px; }
+.back { font-size: 13px; color: var(--ink3); text-decoration: none; display: inline-block; margin-bottom: 40px; transition: color 0.12s; }
+.back:hover { color: var(--ink); }
+.case-meta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+.meta-item { font-size: 12px; color: var(--ink3); }
+.meta-sep { font-size: 12px; color: var(--ink3); }
+h1 { font-size: 28px; font-weight: 500; line-height: 1.25; letter-spacing: -0.01em; margin-bottom: 20px; }
+.case-intro { font-size: 16px; line-height: 1.75; color: var(--ink2); margin-bottom: 48px; max-width: 600px; }
+.case-intro em { font-style: italic; color: var(--ink); }
+.img-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin: 32px 0; }
+.img-wrap { border-radius: 10px; overflow: hidden; background: #f0ede8; }
+.img-wrap img { width: 100%; display: block; }
+.full-img { width: 100%; border-radius: 10px; overflow: hidden; background: #f0ede8; margin: 32px 0; }
+.full-img img { width: 100%; display: block; }
+.full-video { width: 100%; border-radius: 10px; overflow: hidden; background: #f0ede8; margin: 32px 0; aspect-ratio: 16/10; }
+.full-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--ink3); letter-spacing: 0.05em; }
+.img-cap { font-size: 12px; color: var(--ink3); margin-top: 10px; line-height: 1.5; }
+.thread-label { font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.08em; margin: 56px 0 8px; }
+h2 { font-size: 20px; font-weight: 500; margin: 16px 0 14px; color: var(--ink); line-height: 1.3; }
+p { font-size: 15px; color: var(--ink2); line-height: 1.78; margin-bottom: 16px; max-width: 600px; }
+p em { font-style: italic; color: var(--ink); }
+p strong { font-weight: 500; color: var(--ink); }
+hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+.pull { font-size: 19px; line-height: 1.5; color: var(--ink); font-weight: 400; margin: 36px 0; max-width: 600px; letter-spacing: -0.01em; }
+.quote-block { border-left: 2px solid var(--border); padding-left: 20px; margin: 28px 0; }
+.quote-block p { font-size: 15px; font-style: italic; color: var(--ink); margin-bottom: 0; }
+.quote-block cite { font-size: 12px; color: var(--ink3); font-style: normal; display: block; margin-top: 8px; }
+.metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin: 8px 0 0; padding: 0; }
+.metric-num { font-size: 24px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.metric-label { font-size: 12px; color: var(--ink3); }
+.footer-nav { display: flex; justify-content: space-between; align-items: center; padding-top: 36px; border-top: 1px solid var(--border); margin-top: 64px; }
+.nav-link-sm { font-size: 13px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-link-sm:hover { color: var(--ink); }
+@media (max-width: 780px) { nav, .page { padding-left: 20px; padding-right: 20px; } .img-grid-3 { grid-template-columns: 1fr; } .metrics-row { grid-template-columns: 1fr 1fr; } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.page { animation: fadeIn 0.4s ease both; }
+</style>
+</head>
+<body>
+<nav>
+  <a href="portfolio.html" class="nav-name">Yanan</a>
+  <ul class="nav-links"><li><a href="portfolio.html#about">About</a></li></ul>
+</nav>
+<div class="page">
+  <a href="portfolio.html" class="back">← All work</a>
+
+  <div class="case-meta">
+    <span class="meta-item">iOS App</span><span class="meta-sep">·</span>
+    <span class="meta-item">Visual Design</span><span class="meta-sep">·</span>
+    <span class="meta-item">Interaction</span><span class="meta-sep">·</span>
+    <span class="meta-item">AI Product</span><span class="meta-sep">·</span>
+    <span class="meta-item">Solo Designer</span>
+  </div>
+
+  <h1>FateTell</h1>
+  <p class="case-intro">A Chinese astrology app for a global audience. The fortune-telling logic runs on AI; I designed everything you see and feel. Two things drove the work: how to express Eastern aesthetics in a modern, restrained way — and how to make the core ritual, asking the divine, feel physically real on a screen.</p>
+
+  <div class="full-img"><img src="assets/fatetell/ft-screens.png" alt="FateTell — Daily, Lunar Cusps, and Readings"></div>
+
+  <!-- THREAD ONE -->
+  <p class="thread-label">Thread One — The aesthetics of emptiness</p>
+  <h2>I kept coming back to Crouching Tiger, Hidden Dragon</h2>
+  <p>Not for the wuxia, but for what the film actually pulls off: it's unmistakably Eastern, yet it speaks in fully modern cinematic language. Nothing about it feels like a costume drama or a nostalgia piece. That was the bar I set for FateTell. <strong>I didn't want to make a "traditional Chinese style" product</strong> — to me that direction always reads as decorative, never quite modern, never quite elevated.</p>
+  <p>So instead of borrowing Chinese motifs wholesale, I went one level deeper: extract the underlying <em>structure</em> of the aesthetic, then rebuild from there. Lots of negative space. Asymmetry. Textures and woodblock marks that appear as quiet punctuation, tucked into corners — never announcing themselves. The product should feel Chinese in the way a room feels lived-in: you sense it before you can point to why.</p>
+
+  <p class="pull">The truest quality of Eastern aesthetics is emptiness — and emptiness can only be expressed through space.</p>
+
+  <p>This is the decision I'm most proud of, because it didn't stay visual. If emptiness is the point, then the interface itself has to breathe — which meant I couldn't pile features onto one busy home screen the way most apps in this category do. I split the product across five distinct tabs, each given room to exist on its own. <em>The whitespace isn't just how it looks; it's how it's structured.</em> I was willing to trade home-screen density — and the conversion bump that usually comes with it — to protect the space. That trade-off is the aesthetic, made operational.</p>
+
+  <div class="full-img"><img src="assets/fatetell/ft-window.png" alt="Report card with lattice-window notch"></div>
+  <p class="img-cap">The report card's edge borrows the silhouette of a traditional Chinese lattice window. If you don't know the reference, it just reads as a card with an unusual, pleasing shape. If you do, it's a small signal that someone was paying attention. That's the level I wanted these details to live at — felt, not displayed.</p>
+
+  <hr>
+
+  <!-- THREAD TWO -->
+  <p class="thread-label">Thread Two — Making a ritual feel real</p>
+  <h2>The most fun part of the app is Lunar Cusps</h2>
+  <p>Lunar Cusps is FateTell's take on a Chinese folk ritual: when you have a question for the divine, you toss a pair of crescent-shaped wooden blocks and read how they land — one up, one down means yes; both flat means the gods are laughing; both round means no. I wanted this moment to feel like the real thing, not a button that returns a result. <em>If it's going to be a ritual, the body has to be involved.</em></p>
+  <p>So the throw is a <strong>press-and-hold to build intention, then release to cast.</strong> You feel the charge before you let go. The blocks are dropped through a real physics engine — they actually tumble and settle, so the outcome is genuinely random, never a pre-baked animation. The instant they land, haptics fire and a wooden clack plays. <em>For a moment, a glass screen has the weight of two pieces of carved wood.</em></p>
+
+  <div class="full-video">
+    <video src="assets/fatetell/ft-jiaobei.mp4" autoplay loop muted playsinline poster="assets/fatetell/IMG_3149.PNG">
+      <div class="video-placeholder">Lunar Cusps throw — video</div>
+    </video>
+  </div>
+  <p class="img-cap">Press to build intention, release to cast. Physics-driven, with haptics and a wooden clack on landing — so the answer feels earned, not generated.</p>
+
+  <p>This wasn't only about delight. The press-charge-release loop, the randomness, the sound and touch — together they create the feeling of <em>actually asking</em>, which is exactly what the practice is about. That sense of genuine ritual is why Lunar Cusps became the centerpiece of our Taiwan and Hong Kong campaigns: in markets where asking the divine is a living habit, this interaction landed as the real thing, not a gimmick. The design judgment and the market judgment turned out to be the same one.</p>
+
+  <hr>
+
+  <!-- USER VOICE -->
+  <div class="quote-block">
+    <p>"It might still have a few bugs, but the mechanisms are so fun and well thought out. I love the haptic feedback — it helps me feel connected rather than interacting with a lifeless screen."</p>
+    <cite>— App Store review, United States</cite>
+  </div>
+
+  <div class="quote-block">
+    <p>"Hands down the most visually stunning astrology product I've used in ages — the mystical Eastern aesthetics and Chinese elements are just breathtaking."</p>
+    <cite>— App Store review, United States</cite>
+  </div>
+
+  <hr>
+
+  <div class="metrics-row">
+    <div><p class="metric-num">Solo</p><p class="metric-label">Entire visual system & IA, 0 → 1</p></div>
+    <div><p class="metric-num">4.8★</p><p class="metric-label">App Store rating</p></div>
+    <div><p class="metric-num">Global</p><p class="metric-label">Users across TW · CN · US</p></div>
+  </div>
+
+  <div class="footer-nav">
+    <a href="portfolio.html" class="nav-link-sm">← All work</a>
+    <a href="pagepop.html" class="nav-link-sm">Next: PagePop →</a>
+  </div>
+</div>
+</body>
+</html>

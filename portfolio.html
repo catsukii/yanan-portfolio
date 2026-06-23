@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yanan — Designer & Builder</title>
+<link rel="icon" type="image/png" href="tab.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #ffffff; --ink: #111111; --ink2: #666666; --ink3: #aaaaaa;
+  --border: #e8e8e8; --f: 'DM Sans', -apple-system, sans-serif; --max: 720px;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f); font-size: 15px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+
+nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 0; max-width: var(--max); margin: 0 auto; }
+.nav-name { font-size: 14px; font-weight: 500; text-decoration: none; color: var(--ink); }
+.nav-links { display: flex; gap: 20px; list-style: none; align-items: center; }
+.nav-links a { font-size: 14px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.nav-links a:hover { color: var(--ink); }
+
+.page { max-width: var(--max); margin: 0 auto; padding: 0 0 80px; }
+
+/* HERO */
+.hero { padding: 48px 0 40px; border-bottom: 1px solid var(--border); }
+.hero-bio { font-size: 16px; font-weight: 400; line-height: 1.75; color: var(--ink); max-width: 620px; }
+.hero-bio a { text-decoration: underline; text-underline-offset: 2px; }
+
+/* SECTION TITLE */
+.section-title { font-size: 12px; font-weight: 500; color: var(--ink3); letter-spacing: 0.06em; text-transform: uppercase; margin: 44px 0 24px; }
+
+/* 2×2 GRID */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 24px;
+}
+
+.project-card {
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column;
+  transition: opacity 0.12s;
+}
+.project-card:hover { opacity: 0.75; }
+
+.card-image {
+  width: 100%; aspect-ratio: 4/3;
+  border-radius: 10px; overflow: hidden;
+  background: #f4f4f4;
+  margin-bottom: 14px;
+}
+.card-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card-image-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--ink3); letter-spacing: 0.06em; text-transform: uppercase;
+}
+
+/* tinted placeholders */
+.img-fatetell { background: #EDE8E0; }
+.img-pagepop  { background: #E2EBE4; }
+.img-tennis   { background: #E5EBE0; }
+.img-zeitro   { background: #E0E6EE; }
+
+.card-name { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
+.card-desc { font-size: 13px; color: var(--ink2); line-height: 1.6; margin-bottom: 10px; }
+.card-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.card-tag  { font-size: 12px; color: var(--ink3); }
+
+/* ABOUT */
+.about { padding: 48px 0 0; }
+.about p { font-size: 15px; color: var(--ink2); line-height: 1.75; margin-bottom: 12px; max-width: 560px; }
+.about p a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+.tool-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px; }
+.tool-tag { font-size: 12px; color: var(--ink3); border: 1px solid var(--border); padding: 4px 10px; border-radius: 100px; }
+
+/* FOOTER */
+.footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+.footer-name { font-size: 14px; font-weight: 500; }
+.footer-links { display: flex; gap: 16px; list-style: none; }
+.footer-links a { font-size: 13px; color: var(--ink2); text-decoration: none; transition: color 0.12s; }
+.footer-links a:hover { color: var(--ink); }
+
+@media (max-width: 780px) {
+  nav, .page { padding-left: 20px; padding-right: 20px; }
+  .project-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer { flex-direction: column; gap: 14px; text-align: center; }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.hero    { animation: fadeIn 0.4s ease both; }
+.project-card:nth-child(1) { animation: fadeIn 0.35s 0.1s ease both; }
+.project-card:nth-child(2) { animation: fadeIn 0.35s 0.15s ease both; }
+.project-card:nth-child(3) { animation: fadeIn 0.35s 0.2s ease both; }
+.project-card:nth-child(4) { animation: fadeIn 0.35s 0.25s ease both; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="portfolio.html" class="nav-name">Yanan</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="https://x.com/YahahaFound" target="_blank">Follow</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <section class="hero">
+    <p class="hero-bio">
+      Designer and iOS developer. Currently working on <a href="https://apps.apple.com/tw/app/fatetell-%E6%93%B2%E7%AD%8A-%E8%81%96%E6%9D%AF-%E7%AD%8A%E6%9D%AF-%E6%AF%8F%E6%97%A5%E9%81%8B%E5%8B%A2/id6752552096" target="_blank">FateTell</a> — a Chinese astrology app.
+      Ideas come on walks. I build them with AI, but the taste is mine to account for.
+    </p>
+  </section>
+
+  <h2 class="section-title">Selected Work</h2>
+
+  <div class="project-grid">
+
+    <a href="fatetell.html" class="project-card">
+      <div class="card-image">
+        <img src="assets/home/dog-fatetell.png" alt="FateTell"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'card-image-inner img-fatetell\'>FateTell</div>'">
+      </div>
+      <p class="card-name">FateTell</p>
+      <p class="card-desc">Chinese astrology app. AI reads the oracle; the design makes you feel it's real.</p>
+      <div class="card-tags">
+        <span class="card-tag">iOS</span>
+        <span class="card-tag">Visual Design</span>
+        <span class="card-tag">AI Product</span>
+      </div>
+    </a>
+
+    <a href="pagepop.html" class="project-card">
+      <div class="card-image">
+        <img src="assets/home/dog-pagepop.png" alt="PagePop"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'card-image-inner img-pagepop\'>PagePop</div>'">
+      </div>
+      <p class="card-name">PagePop</p>
+      <p class="card-desc">Kindle companion app. Paid, 4.8 stars — design is the reason people subscribe.</p>
+      <div class="card-tags">
+        <span class="card-tag">iOS</span>
+        <span class="card-tag">Indie</span>
+        <span class="card-tag">4.8★ · paid</span>
+      </div>
+    </a>
+
+    <a href="tennis.html" class="project-card">
+      <div class="card-image">
+        <img src="assets/home/dog-bouncie.png" alt="Bouncie"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'card-image-inner img-tennis\'>Bouncie</div>'">
+      </div>
+      <p class="card-name">Bouncie</p>
+      <p class="card-desc">Tennis tracker. AI-native for the data, hand-drawn for the fun — and yes, I drew the illustrations.</p>
+      <div class="card-tags">
+        <span class="card-tag">iOS</span>
+        <span class="card-tag">AI-Native</span>
+        <span class="card-tag">XHS Nominated</span>
+      </div>
+    </a>
+
+    <a href="zeitro.html" class="project-card">
+      <div class="card-image">
+        <img src="assets/home/dog-zeitro.png" alt="Zeitro"
+          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'card-image-inner img-zeitro\'>Zeitro</div>'">
+      </div>
+      <p class="card-name">Zeitro</p>
+      <p class="card-desc">Mortgage SaaS. Found the user group competitors ignored; built a tool that gets them online in 30 minutes.</p>
+      <div class="card-tags">
+        <span class="card-tag">SaaS · B2B</span>
+        <span class="card-tag">Product Thinking</span>
+      </div>
+    </a>
+
+  </div>
+
+  <section class="about" id="about">
+    <h2 class="section-title">About</h2>
+    <p>I work at the intersection of visual design, product thinking, and independent development. I've shipped apps across health, productivity, culture, and finance — and I run the social accounts that grow them.</p>
+    <p>I care about craft at the smallest scale. Every tap, every transition, every empty state deserves intention.</p>
+    <p>Currently building in public. Always happy to talk design, AI, or whatever you're working on — <a href="mailto:guyananego@gmail.com">coffee chat or email</a>, either works.</p>
+    <div class="tool-list">
+      <span class="tool-tag">Figma</span>
+      <span class="tool-tag">Swift / SwiftUI</span>
+      <span class="tool-tag">Cocos Creator</span>
+      <span class="tool-tag">Rive</span>
+      <span class="tool-tag">Claude Code</span>
+      <span class="tool-tag">Midjourney</span>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span class="footer-name">Yanan</span>
+    <ul class="footer-links">
+      <li><a href="https://x.com/YahahaFound" target="_blank">X / Twitter</a></li>
+      <li><a href="mailto:guyananego@gmail.com">Email</a></li>
+    </ul>
+  </footer>
+
+</div>
+</body>
+</html>
