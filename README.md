@@ -3,7 +3,7 @@
 A personal portfolio site. Designer and iOS developer — shipping apps across
 astrology, reading, tennis, and fintech.
 
-**Live:** https://catsukii.github.io/yanan-portfolio/
+**Live:** https://catsukii.github.io/portfolio/
 
 ## Run locally
 Open `index.html` in any browser. No build step.
